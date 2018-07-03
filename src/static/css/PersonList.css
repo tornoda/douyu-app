@@ -1,0 +1,64 @@
+.zhubo-cards {
+  overflow: hidden;
+  background-color: #ccc;
+  border-radius: 3px;
+  padding: 3px;
+  /* height: 74px; */
+  transition: height 0.5s;
+  margin-top: 3px;
+}
+  .zhubo-cards * {
+    box-sizing: border-box;
+  }
+  .zc-status {
+    width: 100%;
+    padding: 13px 10px;
+    overflow: hidden;
+  }
+    .zc-portrait {
+      height: 75px;
+      width: 75px;
+      border-radius: 50%;
+      float: left;
+      margin-right: 10px;
+    }
+    .zc-popularity {
+      float: left;
+      height: 50px;
+      line-height: 25px;
+    }
+    .fa-gift {
+      float: right;
+      font-size: 19px !important;
+      color: #CC3333;
+      line-height: 50px !important;
+      height: 50px !important;
+      width: 50px !important;
+      text-align: center;
+    }
+  .zc-candybox {
+    clear: both;
+    padding: 0 30px;
+    line-height: 20px;
+    height: 230px;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+    .zc-candybox li {
+      height: 20px;
+      line-height: 20px;
+      margin-top: 5px;
+    }
+      .zc-candybox img {
+        border-radius: 50%;
+        width: 20px;
+        float: left;
+      }
+      .zc-price {
+        font-size: 16px;
+        float: left;
+        height: 20px;
+        line-height: 20px;
+        margin-left: 5px;
+      }
