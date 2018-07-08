@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import react from 'react';
+import { render } from 'react-dom'
 import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 import logo from './static/img/logo.png';
 import GithubLogo from './static/img/github';
