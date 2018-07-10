@@ -1,5 +1,6 @@
 本项目使用 [Create React App](https://github.com/facebookincubator/create-react-app)构建。
 ## 说明 ##
+分支使用Redux进行管理和更新，后续功能添加使用该分支。
 本项目使用API来自斗鱼官方论坛。支持响应式。
 ## 技术栈 ##
  - CSS部分：使用`styled-components`，css in js方案；
