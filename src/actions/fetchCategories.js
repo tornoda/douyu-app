@@ -1,7 +1,7 @@
 import { requestBegin, received, receiveFailed } from './fetch3Step'
 import fetch from 'cross-fetch'
 
-const CATEGORIES = 'CATEGORIES';
+const CATEGORIES = '_CATEGORIES';
 
 export const fetchCategories = () => {
   (dispatch) => {
@@ -9,9 +9,11 @@ export const fetchCategories = () => {
     return fetch('api/RoomApi/game')
       .then(
         response => response.data.data,
+      )
+      .catch(
         err => dispatch(receiveFailed(err, CATEGORIES))
       )
-      .then(dispatch(received(data, CATEGORIES)))
+      .then((data) => dispatch(received(data, CATEGORIES)))
   }
 }
 

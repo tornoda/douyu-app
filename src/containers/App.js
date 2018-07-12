@@ -1,22 +1,50 @@
-import React from 'react';
-import Header from '../components/Header'
-import RandomRooms from './RandomRooms'
-import Footer from '../components/Footer'
+import React, { Component } from 'react';
+import Header from '../components/common/Header'
+import Footer from '../components/common/Footer'
+import RandomRooms from './r-randomRooms/RandomRooms'
+import Categories from '../containers/r-categories/Categories'
 import configureStore from '../store/store'
+import { judgeScreenSize } from '../actions/judgeScreenSize'
 import { Provider } from 'react-redux'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import Nav, { CATEGORIES, MYSPACE } from '../components/Nav/Nav'
 
-const store = configureStore()
+// const store = configureStore()
 
-const App = () => (
-  <Provider store={store}>
-    <Container /*注意这里的div包裹不能少*/>
-      <Header />
-      <RandomRooms/>
-      <Footer />
-    </Container>
-  </Provider>
-)
+class App extends Component {
+  componentDidMount() {
+    const { judgeScreenSize } = this.props
+    judgeScreenSize()
+  }
+
+  render() {
+    const { store } = this.props
+    return (
+      <Provider store={store}>
+        <Router>
+          <Container /*注意这里的div包裹不能少*/>
+            <Header />
+            <Nav />
+            <Switch>
+              <Route exact path='/' component={RandomRooms} />
+              {/* <Route path={CATEGORIES} component={Categories} /> */}
+              {/* <Route path={MYSPACE} component={MySpace}/> */}
+            </Switch>
+            <Footer />
+          </Container>
+        </Router>
+      </Provider>
+    )
+  }
+}
+
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = (dispatch) => ({
+  judgeScreenSize: () => dispatch(judgeScreenSize()),
+})
 
 const Container = styled.div`
   font-size: 14px;
@@ -35,4 +63,7 @@ const Container = styled.div`
   }
 `
 
-export default App;
+export default connect(
+  // mapStateToProps,
+  mapDispatchToProps
+)(App);

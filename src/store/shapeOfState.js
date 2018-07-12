@@ -9,7 +9,8 @@ const state =
     rooms: []
   },
   categories: {
-
+    fetchStatus: '',
+    categories:[]
   },
   following: {
 

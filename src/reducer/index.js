@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux'
-import disposeFetching from './disposeFetching'
+import { disposeFetchRandom } from './disposeFetching'
+import { disposeCategories } from './disposeFetching'
+import disposeJudgeScreenSize from './disposeJudgeScreenSize'
 
 const rootReducer = combineReducers({
-  random: disposeFetching
+  global: disposeJudgeScreenSize,
+  random: disposeFetchRandom,
+  categories: disposeCategories
 }) 
 
 export default rootReducer
