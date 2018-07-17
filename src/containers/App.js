@@ -13,38 +13,22 @@ import Nav, { CATEGORIES, MYSPACE } from '../components/Nav/Nav'
 
 // const store = configureStore()
 
-class App extends Component {
-  componentDidMount() {
-    const { judgeScreenSize } = this.props
-    judgeScreenSize()
-  }
-
-  render() {
-    const { store } = this.props
-    return (
-      <Provider store={store}>
-        <Router>
-          <Container /*注意这里的div包裹不能少*/>
-            <Header />
-            <Nav />
-            <Switch>
-              <Route exact path='/' component={RandomRooms} />
-              {/* <Route path={CATEGORIES} component={Categories} /> */}
-              {/* <Route path={MYSPACE} component={MySpace}/> */}
-            </Switch>
-            <Footer />
-          </Container>
-        </Router>
-      </Provider>
-    )
-  }
-}
-
-const mapStateToProps = state => ({})
-
-const mapDispatchToProps = (dispatch) => ({
-  judgeScreenSize: () => dispatch(judgeScreenSize()),
-})
+const App = ({ store }) => (
+  <Provider store={store}>
+    <Router>
+      <Container /*注意这里的div包裹不能少*/>
+        <Header />
+        <Nav />
+        <Switch>
+          <Route exact path='/' component={RandomRooms} />
+          <Route path={CATEGORIES} component={Categories} />
+          {/* <Route path={MYSPACE} component={MySpace}/> */}
+        </Switch>
+        <Footer />
+      </Container>
+    </Router>
+  </Provider>
+)
 
 const Container = styled.div`
   font-size: 14px;
@@ -63,7 +47,4 @@ const Container = styled.div`
   }
 `
 
-export default connect(
-  // mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;

@@ -1,12 +1,12 @@
 import { requestBegin, received, receiveFailed } from './fetch3Step'
-import fetch from 'cross-fetch'
+import axios from 'axios'
 
 const CATEGORIES = '_CATEGORIES';
 
 export const fetchCategories = () => {
-  (dispatch) => {
+  return (dispatch) => {
     dispatch(requestBegin(CATEGORIES))
-    return fetch('api/RoomApi/game')
+    axios.get('api/RoomApi/game')
       .then(
         response => response.data.data,
       )
@@ -16,4 +16,3 @@ export const fetchCategories = () => {
       .then((data) => dispatch(received(data, CATEGORIES)))
   }
 }
-

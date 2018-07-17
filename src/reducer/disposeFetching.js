@@ -10,16 +10,18 @@ const defaultRandomState = {
   rooms: []
 }
 
+const RANDOM = '_RANDOM'
+
 export const disposeFetchRandom = (preState = defaultRandomState, action) => {
   switch (action.type) {
-    case `${REQUEST_BEGIN}${action.condition}`:
+    case REQUEST_BEGIN + RANDOM:
       console.log('fetching random start')
       return {
         ...preState, ...{
           fetchStatus: REQUEST_BEGIN
         }
       }
-    case `${RECEIVED}${action.condition}`:
+    case RECEIVED + RANDOM:
       let page = preState.page;
       page++
       return {
@@ -29,7 +31,7 @@ export const disposeFetchRandom = (preState = defaultRandomState, action) => {
           rooms: [...preState.rooms, ...action.data]
         }
       }
-    case `${RECEIVE_FAILED}${action.condition}`:
+    case RECEIVE_FAILED + RANDOM:
       return {
         ...preState, ...{
           fetchStatus: RECEIVE_FAILED
@@ -45,24 +47,26 @@ const defaultCategoriesState = {
   categories: []
 }
 
+const CATEGORIES = '_CATEGORIES'
+
 export const disposeCategories = (preState = defaultCategoriesState, action) => {
   let condition = action.condition
   switch (action.type) {
-    case `${REQUEST_BEGIN}${condition}`:
+    case REQUEST_BEGIN + CATEGORIES:
       console.log('fetching categories start')
       return {
         ...preState, ...{
           fetchStatus: REQUEST_BEGIN
         }
       }
-    case `${RECEIVED}${condition}`:
+    case RECEIVED + CATEGORIES:
       return {
         ...preState, ...{
           fetchStatus: RECEIVED,
           categories: action.data
         }
       }
-    case `${RECEIVE_FAILED}${condition}`:
+    case RECEIVE_FAILED + CATEGORIES:
       return {
         ...preState, ...{
           fetchStatus: RECEIVE_FAILED
