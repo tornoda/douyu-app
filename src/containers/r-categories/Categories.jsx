@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { fetchCategories } from '../../actions/fetchCategories'
-import OneCategory from '../../components/r-categories/OneCategory'
+import { OneCategory } from '../../components'
 import { connect } from 'react-redux'
 import { judgeScreenSize } from '../../actions/judgeScreenSize'
 

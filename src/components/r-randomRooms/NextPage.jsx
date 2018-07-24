@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const NextPage = ({getNextPage, children}) => (
+const NextPage = ({ getNextPage, children }) => (
   <H1 onMouseDown={getNextPage} onTap={getNextPage}>
     {children}
   </H1>

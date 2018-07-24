@@ -3,6 +3,9 @@ import {
   RECEIVED,
   RECEIVE_FAILED,
 } from '../actions/fetch3Step'
+import { RANDOM } from '../actions/fetchRandom'
+import { CATEGORIES } from '../actions/fetchCategories'
+import { FETCH_ONE } from '../actions/fetchOne'
 
 const defaultRandomState = {
   fetchStatus: '',
@@ -10,7 +13,7 @@ const defaultRandomState = {
   rooms: []
 }
 
-const RANDOM = '_RANDOM'
+// '_RANDOM'
 
 export const disposeFetchRandom = (preState = defaultRandomState, action) => {
   switch (action.type) {
@@ -47,7 +50,7 @@ const defaultCategoriesState = {
   categories: []
 }
 
-const CATEGORIES = '_CATEGORIES'
+// '_CATEGORIES'
 
 export const disposeCategories = (preState = defaultCategoriesState, action) => {
   let condition = action.condition
@@ -74,5 +77,37 @@ export const disposeCategories = (preState = defaultCategoriesState, action) => 
       }
     default:
       return preState
+  }
+}
+
+const defaultFetchOne = {
+  fetchStatus: '',
+  nameInfoList: []
+}
+
+// _FETCH_ONE'
+
+export const disposeFetchOne = (preState = defaultFetchOne, action) => {
+  switch (action.type) {
+    case REQUEST_BEGIN + FETCH_ONE:
+      return {
+        ...preState,
+        fetchStatus: REQUEST_BEGIN
+      }
+    case RECEIVED + FETCH_ONE:
+      const { data } = action
+      const { nameInfoList } = preState
+      return {
+        ...preState,
+        fetchStatus: RECEIVED,
+        nameInfoList: [...nameInfoList, data]
+      }
+    case RECEIVE_FAILED + FETCH_ONE:
+      return {
+        ...preState,
+        fetchStatus: RECEIVE_FAILED
+      }
+    default:
+      return preState;
   }
 }

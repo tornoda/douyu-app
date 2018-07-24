@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import RoomBrief from '../../components/r-randomRooms/RoomBreif';
-import NextPage from '../../components/r-randomRooms/NextPage';
+// import RoomBrief from '../../components/r-randomRooms/RoomBreif';
+// import NextPage from '../../components/r-randomRooms/NextPage';
+import { RoomBrief, NextPage } from '../../components'
 import { fetchRandom } from '../../actions/fetchRandom';
 import { connect } from 'react-redux'
 

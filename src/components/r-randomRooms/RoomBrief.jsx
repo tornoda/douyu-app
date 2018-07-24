@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import { convertNumber } from '../../utility/numberDealer'
 
-const RoomBreif = ({
+const RoomBrief = ({
   roomUrl,
   roomSrc,
   roomId,
@@ -86,4 +86,4 @@ const H1 = styled.h1`
     font-size: 1rem;
   }
 `
-export default RoomBreif;
+export default RoomBrief;

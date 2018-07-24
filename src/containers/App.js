@@ -1,16 +1,25 @@
-import React, { Component } from 'react';
-import Header from '../components/common/Header'
-import Footer from '../components/common/Footer'
-import RandomRooms from './r-randomRooms/RandomRooms'
-import Categories from '../containers/r-categories/Categories'
-import configureStore from '../store/store'
-import { judgeScreenSize } from '../actions/judgeScreenSize'
+import React, { Component } from 'react'
+// import Header from '../components/common/Header'
+// import Footer from '../components/common/Footer'
+// import RandomRooms from './r-randomRooms/RandomRooms'
+// import Categories from '../containers/r-categories/Categories'
+// import configureStore from '../store/store'
+// import { judgeScreenSize } from '../actions/judgeScreenSize'
 import { Provider } from 'react-redux'
 import styled from 'styled-components'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
-import Nav, { CATEGORIES, MYSPACE } from '../components/Nav/Nav'
-
+import { CATEGORIES, MYSPACE } from '../components/Nav/Nav'
+import {
+  Nav,
+  Header,
+  Footer
+} from '../components'
+import {
+  RandomRooms,
+  Categories,
+  MySpace
+} from './'
 // const store = configureStore()
 
 const App = ({ store }) => (
@@ -22,7 +31,7 @@ const App = ({ store }) => (
         <Switch>
           <Route exact path='/' component={RandomRooms} />
           <Route path={CATEGORIES} component={Categories} />
-          {/* <Route path={MYSPACE} component={MySpace}/> */}
+          <Route path={MYSPACE} component={MySpace}/>
         </Switch>
         <Footer />
       </Container>

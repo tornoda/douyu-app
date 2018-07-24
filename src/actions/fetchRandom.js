@@ -1,7 +1,7 @@
 import { requestBegin, received, receiveFailed } from './fetch3Step'
 import axios from 'axios'
 
-const RANDOM = '_RANDOM'
+export const RANDOM = '_RANDOM'
 
 export const fetchRandom = (page) => {
   return (dispatch) => {

@@ -1,7 +1,7 @@
 import { requestBegin, received, receiveFailed } from './fetch3Step'
 import axios from 'axios'
 
-const CATEGORIES = '_CATEGORIES';
+export const CATEGORIES = '_CATEGORIES'
 
 export const fetchCategories = () => {
   return (dispatch) => {
