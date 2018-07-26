@@ -5,6 +5,8 @@ import React, { Component } from 'react'
 // import Categories from '../containers/r-categories/Categories'
 // import configureStore from '../store/store'
 // import { judgeScreenSize } from '../actions/judgeScreenSize'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+import '../css/style.css'
 import { Provider } from 'react-redux'
 import styled from 'styled-components'
 // import { connect } from 'react-redux'
@@ -28,11 +30,19 @@ const App = ({ store }) => (
       <Container /*注意这里的div包裹不能少*/>
         <Header />
         <Nav />
-        <Switch>
-          <Route exact path='/' component={RandomRooms} />
-          <Route path={CATEGORIES} component={Categories} />
-          <Route path={MYSPACE} component={MySpace}/>
-        </Switch>
+        <Route
+          render={({ location }) => (
+            <TransitionGroup>
+              <CSSTransition key={location.key} classNames="fade" timeout={300}>
+                <Switch location={location}>
+                  <Route exact path='/' component={RandomRooms} />
+                  <Route path={CATEGORIES} component={Categories} />
+                  <Route path={MYSPACE} component={MySpace} />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          )}
+        />
         <Footer />
       </Container>
     </Router>

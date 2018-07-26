@@ -8,7 +8,7 @@ export const MYSPACE = '/Myspace'
 const navList = [
   {
     name: '随便看看',
-    path: ''
+    path: '/'
   },
   {
     name: '分类',

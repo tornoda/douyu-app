@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Candy = (
+const Candy = ({
   mimg,
   name,
   pc,
   gx
-) => (
+}) => (
   <List backgroundImg={mimg} alt="gift-logo">
     {`${name}: ${pc}（价格）/${gx}（贡献值）`}
   </List>

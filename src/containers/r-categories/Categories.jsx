@@ -31,6 +31,13 @@ class Categories extends Component {
   }
 }
 
+Categories.defaultProps = {
+  categories: {
+    categories: [],
+  },
+  isPhoneSize: false
+}
+
 const mapStateToProps = (state) => {
   const { categories, global: { isPhoneSize } } = state
   return {

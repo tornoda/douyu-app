@@ -5,33 +5,35 @@ import { Candy, Status } from '../../components'
 class OneList extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      isHidden: true,
+    }
     this.listNode = React.createRef()
-    // this.showGift.bind(this)
+    this.toggleBox = this.toggleBox.bind(this)
   }
 
-  // showGift() {
-  //   const thisElement = ReactDOM.findDOMNode(this);
-  //   const currentHeight = document.defaultView.getComputedStyle(thisElement).height;
-  //   // const maxHeight = currentHeight === '100px' ? '338px' : '318px';
-  //   let targetHeight = 0;
-  //   if (currentHeight === '100px') targetHeight = '338px';
-  //   if (currentHeight === '88px') targetHeight = '318px';
-  //   if (currentHeight === '338px') targetHeight = '100px';
-  //   if (currentHeight === '318px') targetHeight = '88px';
-  //   this.setState({
-  //     style: {
-  //       height: targetHeight,
-  //     }
-  //   })
-  // }
+  toggleBox() {
+    const { isHidden } = this.state
+    if (isHidden) this.setState({
+      maxHeight: '388px',
+      isHidden: false,
+    })
+    if (!isHidden) this.setState({
+      maxHeight: '0',
+      isHidden: true
+    })
+  }
 
   render() {
     const { gift } = this.props
+    const { maxHeight } = this.state
     return (
-      <List style={this.state.style} ref={this.listNode}>
-        <Status {...this.props} />
-        <CandyBox>
+      <List ref={this.listNode}>
+        <Status
+          {...this.props}
+          toggleBox={this.toggleBox}
+        />
+        <CandyBox style={{ maxHeight: maxHeight }}>
           {
             gift.map(({
               mimg,
@@ -55,24 +57,21 @@ class OneList extends Component {
 }
 
 const List = styled.li`
-  overflow: hidden;
   box-sizing: border-box;
   width: 47%;
   display: inline-block;
   vertical-align: top;
   background-color: #ccc;
   border-radius: 3px;
-  padding: 0 3px 3px;
-  transition: height 0.5s;
+  padding: 12px 3px;
   margin: 3px 2% 2% auto;
-  height: 100px;
+  ${'' /* height: 100px; */}
   & * {
     box-sizing: border-box;
   }
   @media screen and (max-width: 600px) {
     width: 100%;
     margin: 3px 0 0 auto;
-    height: 88px;
   }
 `
 // const Status = styled.div`
@@ -112,13 +111,16 @@ const giftButtom = {
   color: '#CC3333',
   display: 'inline-block',
   marginLeft: '12px'
-
 }
 const CandyBox = styled.ul`
   clear: both;
   padding: 0 0 0 12px;
+  margin-bottom: 0;
+  box-sizing: border-box;
   line-height: 20px;
-  height: 230px;
+  ${'' /* height: 230px; */}
+  max-height: 0;
+  transition: 0.5s all;
   overflow: hidden;
   margin-top: 0;
   margin-bottom: 0;

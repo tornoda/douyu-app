@@ -9,7 +9,8 @@ const Status = ({
   room_status,
   start_time,
   online,
-  fans_num
+  fans_num,
+  toggleBox
 }) => (
     <StatusInfo>
       <OwnerPhoto src={avatar} alt={`zhubo-portrait${room_id}`} />
@@ -18,21 +19,32 @@ const Status = ({
           <span>
             {owner_name}
           </span>
-          <span className="fa fa-gift" style={giftButtom}></span>
+          <span
+            className="fa fa-gift"
+            style={giftButtom}
+            onClick={toggleBox}
+            onTap={toggleBox}
+          >
+          </span>
         </div>
         {
           room_status === 1 ?
             (<div>直播中...</div>) :
             (<div>{'上次开播时间：' + start_time}</div>)
         }
-        <div><span>人气：</span>{convertNumber(online) + '（在线）/' + convertNumber(fans_num) + '（总共）'}</div>
+        <div>
+          <span>人气：</span>
+          {
+            convertNumber(online) + '（在线）/' + convertNumber(fans_num) + '（总共）'
+          }
+        </div>
       </Popularity>
     </StatusInfo>
   )
 
 const StatusInfo = styled.div`
   width: 100%;
-  padding: 13px 10px;
+  padding-left: 13px;
   overflow: hidden;
   /* @media screen and (max-width: 600px) {
     height: 88px;
@@ -41,9 +53,10 @@ const StatusInfo = styled.div`
 const OwnerPhoto = styled.img`
   height: 75px;
   width: 75px;
+  display: inline-block;
   max-width: 75px;
   border-radius: 50%;
-  float: left;
+  vertical-align: middle;
   @media screen and (max-width: 600px) {
     height: 60px;
     width: 60px;
@@ -52,9 +65,9 @@ const OwnerPhoto = styled.img`
 `
 const Popularity = styled.div`
   padding-left: 10px;
-  float: left;
-  height: 50px;
-  line-height: 2;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1.5;
   width: 75%;
   @media screen and (max-width: 600px) {
     padding-left: 10px;

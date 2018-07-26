@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { RoomBrief, NextPage } from '../../components'
 import { fetchRandom } from '../../actions/fetchRandom';
 import { connect } from 'react-redux'
+import { REQUEST_BEGIN } from '../../actions/fetch3Step'
 
 class RandomRooms extends Component {
   constructor (props) {
@@ -17,7 +18,7 @@ class RandomRooms extends Component {
   }
   
   render() {
-    const { rooms, page, getPage } = this.props
+    const { rooms, page, getPage, fetchStatus } = this.props
     return (
       <div>
         {
@@ -34,16 +35,24 @@ class RandomRooms extends Component {
           ))
         }
         <NextPage getNextPage={((page) => getPage(page)).bind(null, page)}>
-          点击加载更多
+          {
+            fetchStatus === REQUEST_BEGIN ? '加载中...' : '点击加载'
+          }
         </NextPage>
       </div>
     )
   }
 }
 
+RandomRooms.defaultProps = {
+  rooms: [],
+  page: 0,
+  getPage: null,
+  fetchStatus: null
+}
+
 const mapStateToProps = (state) => {
   const { random } = state
-  console.log(state)
   return random
 }
 
