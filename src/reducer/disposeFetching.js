@@ -7,36 +7,35 @@ import { RANDOM } from '../actions/fetchRandom'
 import { CATEGORIES } from '../actions/fetchCategories'
 import { FETCH_ONE } from '../actions/fetchOne'
 
+// '_RANDOM'
+
 const defaultRandomState = {
   fetchStatus: '',
-  page: 0,
   rooms: []
 }
-
-// '_RANDOM'
 
 export const disposeFetchRandom = (preState = defaultRandomState, action) => {
   switch (action.type) {
     case REQUEST_BEGIN + RANDOM:
       console.log('fetching random start')
       return {
-        ...preState, ...{
+        ...preState, 
+        ...{
           fetchStatus: REQUEST_BEGIN
         }
       }
     case RECEIVED + RANDOM:
-      let page = preState.page;
-      page++
       return {
-        ...preState, ...{
+        ...preState, 
+        ...{
           fetchStatus: RECEIVED,
-          page: page,
           rooms: [...preState.rooms, ...action.data]
         }
       }
     case RECEIVE_FAILED + RANDOM:
       return {
-        ...preState, ...{
+        ...preState, 
+        ...{
           fetchStatus: RECEIVE_FAILED
         }
       }
@@ -45,12 +44,12 @@ export const disposeFetchRandom = (preState = defaultRandomState, action) => {
   }
 }
 
+// '_CATEGORIES'
+
 const defaultCategoriesState = {
   fetchStatus: '',
   categories: []
 }
-
-// '_CATEGORIES'
 
 export const disposeCategories = (preState = defaultCategoriesState, action) => {
   let condition = action.condition
@@ -58,20 +57,23 @@ export const disposeCategories = (preState = defaultCategoriesState, action) => 
     case REQUEST_BEGIN + CATEGORIES:
       console.log('fetching categories start')
       return {
-        ...preState, ...{
+        ...preState, 
+        ...{
           fetchStatus: REQUEST_BEGIN
         }
       }
     case RECEIVED + CATEGORIES:
       return {
-        ...preState, ...{
+        ...preState, 
+        ...{
           fetchStatus: RECEIVED,
           categories: action.data
         }
       }
     case RECEIVE_FAILED + CATEGORIES:
       return {
-        ...preState, ...{
+        ...preState, 
+        ...{
           fetchStatus: RECEIVE_FAILED
         }
       }
@@ -80,12 +82,12 @@ export const disposeCategories = (preState = defaultCategoriesState, action) => 
   }
 }
 
+// _FETCH_ONE'
+
 const defaultFetchOne = {
   fetchStatus: '',
   nameInfoList: []
 }
-
-// _FETCH_ONE'
 
 export const disposeFetchOne = (preState = defaultFetchOne, action) => {
   switch (action.type) {

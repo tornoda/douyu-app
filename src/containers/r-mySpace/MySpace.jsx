@@ -21,7 +21,7 @@ const MySpace = ({ nameInfoList }) => (
 const mapStateToProps = (state) => {
   const {
     following: {
-      infoFecthed: {
+      infoFetched: {
         nameInfoList
       }
     }

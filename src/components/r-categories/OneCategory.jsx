@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import LazyImg from '../common/LazyImg'
+
 const oneCategory = ({
   game_url,
   game_icon,
@@ -8,15 +10,20 @@ const oneCategory = ({
   game_src,
   isPhoneSize
 }) => (
-  <Category>
-    <Img href={game_url} isPhoneSize={isPhoneSize}>
-      <img src={isPhoneSize ? game_icon : game_src} alt={'shoucut-' + cate_id}/>
-    </Img>
-    <H1>
-      {game_name}
-    </H1>
-  </Category>
-)
+    <Category>
+      <Img href={game_url} isPhoneSize={isPhoneSize}>
+        <LazyImg
+          src={isPhoneSize ? game_icon : game_src}
+          alt={'shoucut-' + cate_id}
+          height={'100%'}
+          once
+        />
+      </Img>
+      <H1>
+        {game_name}
+      </H1>
+    </Category>
+  )
 
 const Category = styled.li`
   display: inline-block;

@@ -1,15 +1,9 @@
+import 'normalize.css';
 import React, { Component } from 'react'
-// import Header from '../components/common/Header'
-// import Footer from '../components/common/Footer'
-// import RandomRooms from './r-randomRooms/RandomRooms'
-// import Categories from '../containers/r-categories/Categories'
-// import configureStore from '../store/store'
-// import { judgeScreenSize } from '../actions/judgeScreenSize'
-import { TransitionGroup, CSSTransition } from 'react-transition-group'
+// import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import '../css/style.css'
 import { Provider } from 'react-redux'
 import styled from 'styled-components'
-// import { connect } from 'react-redux'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { CATEGORIES, MYSPACE } from '../components/Nav/Nav'
 import {
@@ -32,15 +26,20 @@ const App = ({ store }) => (
         <Nav />
         <Route
           render={({ location }) => (
-            <TransitionGroup>
-              <CSSTransition key={location.key} classNames="fade" timeout={300}>
-                <Switch location={location}>
-                  <Route exact path='/' component={RandomRooms} />
-                  <Route path={CATEGORIES} component={Categories} />
-                  <Route path={MYSPACE} component={MySpace} />
-                </Switch>
-              </CSSTransition>
-            </TransitionGroup>
+            /* 
+             *在多http请求的情况下使用动画是不明智的
+             *有比较明显的卡吨和性能消耗
+             *这里只是提供学习、体验
+            */
+            // <TransitionGroup>
+            //   <CSSTransition key={location.key} classNames="fade" timeout={300}>
+            <Switch location={location}>
+              <Route exact path='/' component={RandomRooms} />
+              <Route path={CATEGORIES} component={Categories} />
+              <Route path={MYSPACE} component={MySpace} />
+            </Switch>
+            //   </CSSTransition>
+            // </TransitionGroup>
           )}
         />
         <Footer />

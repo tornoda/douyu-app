@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import { convertNumber } from '../../utility/numberDealer'
+import LazyLoad from 'react-lazyload'
 
 const RoomBrief = ({
   roomUrl,
@@ -10,11 +11,13 @@ const RoomBrief = ({
   fansOnline,
   roomName
 }) => (
-  <Random>
-    <a href={roomUrl}>
-      <img src={roomSrc} alt={'room-cover' + roomId} />
-    </a>
-    <Name>
+    <Random>
+      <a href={roomUrl}>
+        <LazyLoad height={'100%'} once>
+          <img src={roomSrc} alt={'room-cover' + roomId} />
+        </LazyLoad>
+      </a>
+      <Name>
         <Nickname>
           {nickName}
         </Nickname>
@@ -23,10 +26,10 @@ const RoomBrief = ({
           </i>
           &nbsp;{convertNumber(fansOnline)}
         </Online>
-    </Name>
-    <H1><a href={roomUrl}>{roomName}</a></H1>
-  </Random>
-)
+      </Name>
+      <H1><a href={roomUrl}>{roomName}</a></H1>
+    </Random>
+  )
 
 const Random = styled.div`
   display: inline-block;

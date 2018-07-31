@@ -6,25 +6,29 @@ import { RoomBrief, NextPage } from '../../components'
 import { fetchRandom } from '../../actions/fetchRandom';
 import { connect } from 'react-redux'
 import { REQUEST_BEGIN } from '../../actions/fetch3Step'
+import {
+  increasePage,
+  changeFirstTime
+} from '../../actions/didRandomPage'
 
 class RandomRooms extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
   }
 
-  componentDidMount () {
-    const { getPage } = this.props
-    getPage()
+  componentDidMount() {
+    const { getPage, isFirstLoad } = this.props
+    if (isFirstLoad === 1) getPage()
   }
-  
+
   render() {
-    const { rooms, page, getPage, fetchStatus } = this.props
+    const { rooms, page, getPage, increasePage, fetchStatus } = this.props
     return (
       <div>
         {
           rooms.map((val, idx) => (
-            <RoomBrief 
-              key={idx} 
+            <RoomBrief
+              key={idx}
               roomUrl={val.url}
               roomSrc={val.room_src}
               roomId={val.room_id}
@@ -34,7 +38,12 @@ class RandomRooms extends Component {
             />
           ))
         }
-        <NextPage getNextPage={((page) => getPage(page)).bind(null, page)}>
+        <NextPage getNextPage={
+          ((page) => {
+            increasePage()
+            getPage(page)
+          }).bind(null, page)
+        }>
           {
             fetchStatus === REQUEST_BEGIN ? '加载中...' : '点击加载'
           }
@@ -52,12 +61,32 @@ RandomRooms.defaultProps = {
 }
 
 const mapStateToProps = (state) => {
-  const { random } = state
-  return random
+  const {
+    random: {
+      infoFetched: {
+        fetchStatus,
+        rooms
+      },
+      page: page,
+      isFirstLoad: isFirstLoad
+    }
+  } = state
+  return {
+    fetchStatus,
+    rooms,
+    page,
+    isFirstLoad
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    getPage: (page = 0) => { dispatch(fetchRandom(page)) }
+  getPage: (page = 0) => {
+    dispatch(fetchRandom(page))
+    dispatch(changeFirstTime)
+  },
+  increasePage: () => {
+    dispatch(increasePage)
+  }
 })
 
 export default connect(

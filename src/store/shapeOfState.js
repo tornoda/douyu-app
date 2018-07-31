@@ -3,23 +3,20 @@ const state =
   global: {
 
   },
-  animation: {
-    oneList: {
-      isShow: false,
-      style: ''
-    }
-  },
   random: {
-    fetchStatus: '',
+    infoFetched: {
+      fetchStatus: '',
+      rooms: []
+    },
     page: 0,
-    rooms: []
+    isFirstLoad: true
   },
   categories: {
     fetchStatus: '',
     categories:[]
   },
   following: {
-    infoFecthed: {
+    infoFetched: {
       fetchStatus: '',
       nameList: [],
     },
